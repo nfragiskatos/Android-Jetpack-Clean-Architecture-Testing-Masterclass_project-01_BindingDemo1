@@ -20,14 +20,5 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
-        binding.submitButton.setOnClickListener {
-            viewModel.addToTotal(getAddend())
-        }
-    }
-
-    private fun getAddend(): Int {
-        val input = binding.addEditText.text.toString().trim()
-        return if (input.isNullOrEmpty()) 0 else input.toInt()
     }
 }

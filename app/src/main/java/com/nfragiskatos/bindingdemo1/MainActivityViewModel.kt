@@ -9,13 +9,15 @@ class MainActivityViewModel(startingTotal: Int) : ViewModel() {
 
     val total: LiveData<Int> = _total
     val text = MutableLiveData<String>()
+    val addend = MutableLiveData<String>()
 
     init {
         _total.value = startingTotal
         text.value = "Sam"
     }
 
-    fun addToTotal(addend: Int) {
-        _total.value = _total.value?.plus(addend)
+    fun addToTotal() {
+        val input = addend.value?.trim()
+        if (!input.isNullOrEmpty()) _total.value = _total.value?.plus(input.toInt())
     }
 }
