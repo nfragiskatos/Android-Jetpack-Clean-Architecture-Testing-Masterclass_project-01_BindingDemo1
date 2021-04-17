@@ -3,6 +3,7 @@ package com.nfragiskatos.bindingdemo1
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.nfragiskatos.bindingdemo1.databinding.ActivityMainBinding
 
@@ -19,10 +20,12 @@ class MainActivity : AppCompatActivity() {
         viewModelFactory = MainActivityViewModelFactory(200)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
-        binding.countTextView.text = viewModel.getCurrentTotal().toString()
+        viewModel.total.observe(this, Observer {
+            binding.countTextView.text = it.toString()
+        })
+
         binding.submitButton.setOnClickListener {
             viewModel.addToTotal(getAddend())
-            binding.countTextView.text = viewModel.getCurrentTotal().toString()
         }
     }
 

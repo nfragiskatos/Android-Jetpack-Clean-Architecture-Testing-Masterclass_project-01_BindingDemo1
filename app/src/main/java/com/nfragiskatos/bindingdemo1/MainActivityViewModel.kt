@@ -1,17 +1,18 @@
 package com.nfragiskatos.bindingdemo1
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel(startingTotal: Int) : ViewModel() {
-    private var total = 0;
+    private var _total = MutableLiveData<Int>()
+    val total : LiveData<Int> = _total
 
     init {
-        total = startingTotal
+        _total.value = startingTotal
     }
 
-    fun getCurrentTotal() : Int = total
-
     fun addToTotal(addend: Int) {
-        total += addend
+        _total.value = _total.value?.plus(addend)
     }
 }
