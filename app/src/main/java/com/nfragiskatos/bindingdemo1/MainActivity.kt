@@ -17,10 +17,17 @@ class MainActivity : AppCompatActivity() {
         initData()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        binding.countTextView.text = viewModel.getCurrentCount().toString()
+
+        binding.countTextView.text = viewModel.getCurrentTotal().toString()
         binding.submitButton.setOnClickListener {
-            binding.countTextView.text = viewModel.getUpdatedCount().toString()
+            viewModel.addToTotal(getAddend())
+            binding.countTextView.text = viewModel.getCurrentTotal().toString()
         }
+    }
+
+    private fun getAddend() : Int {
+        val input = binding.addEditText.text.toString().trim()
+        return if (input.isNullOrEmpty()) 0 else input.toInt()
     }
 
     private fun initData() {
