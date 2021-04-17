@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel(startingTotal: Int) : ViewModel() {
     private var _total = MutableLiveData<Int>()
-    val total : LiveData<Int> = _total
+
+    val total: LiveData<Int> = _total
+    val text = MutableLiveData<String>()
 
     init {
         _total.value = startingTotal
+        text.value = "Sam"
     }
 
     fun addToTotal(addend: Int) {
