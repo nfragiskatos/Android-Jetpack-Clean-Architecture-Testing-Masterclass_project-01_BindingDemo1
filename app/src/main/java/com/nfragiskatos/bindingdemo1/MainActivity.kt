@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initData()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModelFactory = MainActivityViewModelFactory(200)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
@@ -27,21 +26,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getAddend() : Int {
+    private fun getAddend(): Int {
         val input = binding.addEditText.text.toString().trim()
         return if (input.isNullOrEmpty()) 0 else input.toInt()
-    }
-
-    private fun initData() {
-        students.add(Student(1, "Bruce Wayne", "batman@batcave.com"))
-        students.add(Student(2, "Clark Kent", "superman@justiceleague.com"))
-        students.add(Student(3, "Wayne Brady", "waynebrady@whoseline.com"))
-        students.add(Student(4, "Barry Allen", "flash@justiceleague.com"))
-        students.add(Student(5, "Tony Start", "ironman@avengers.com"))
-        students.add(Student(6, "Bruce Banner", "hulk@avengers.com"))
-        students.add(Student(7, "Thor", "thor@avengers.com"))
-        students.add(Student(8, "Carol Danvers", "captainmarvel@avengers.com"))
-        students.add(Student(9, "Peter Parker", "spiderman@avengers.com"))
-        students.add(Student(10, "Stanley Tucci", "stanleytucci@prada.com"))
     }
 }
